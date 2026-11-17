@@ -24,6 +24,13 @@
     </ul>
   </description>
 
+  <screenshots>
+    <screenshot type="default">
+      <caption>Browsing SSH profiles grouped by provider</caption>
+      <image>https://raw.githubusercontent.com/hernique33comiitei/git-profiles/main/data/screenshots/01-profiles.png</image>
+    </screenshot>
+  </screenshots>
+
   <launchable type="desktop-id">io.github.hernique33comiitei.GitProfiles.desktop</launchable>
   <icon type="stock">gitprofiles</icon>
 
