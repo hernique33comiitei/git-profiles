@@ -95,6 +95,10 @@ What the script does, from the `X.Y.Z` argument (or the current CMake version wh
 4. **debian/changelog** — prepends a new `git-profiles (X.Y.Z-1) …` block (RFC date).
 5. **po/pt_BR.po** — updates the `Project-Id-Version` header.
 
+The changelog entries in steps 2–4 are generated from the commit subjects since the last tag
+(`git log <lasttag>..HEAD`, minus the release-bump commits), so well-formed commit messages become
+the changelog. Review and trim them before committing if needed.
+
 Steps 2–4 are **idempotent**: a changelog/release entry is added only if that version isn't already
 present, so re-running the script (or running it with no argument) never duplicates entries — it
 just confirms everything is in sync. It then prints the version read back from each file.
@@ -104,9 +108,13 @@ deliberate decision each release.
 
 ### Cut a new version
 
+Just ask — **"suba a versão X.Y.Z"** / **"release X.Y.Z"** (or `/release`) — and the **`release`
+skill** (`.claude/skills/release/`) runs the whole flow below. By hand:
+
 1. `tools/bump-version.sh X.Y.Z` — bumps CMakeLists and syncs the spec (+ changelog), the metainfo
    (+ release entry), `debian/changelog` and the `.po` header in one shot.
-2. Review the diff, then commit + push `main` (no release yet).
+2. Review the generated changelog (`git diff -- debian/changelog`), trimming if needed, then commit:
+   `git commit -am "chore: release X.Y.Z"` (push `main` — no release yet).
 3. `git tag vX.Y.Z && git push origin vX.Y.Z` → CI builds RPM + DEB and attaches them to the Release.
 
 ### Packaging gotchas
