@@ -29,6 +29,14 @@
       <caption>Browsing SSH profiles grouped by provider</caption>
       <image>https://raw.githubusercontent.com/hernique33comiitei/git-profiles/main/data/screenshots/01-profiles.png</image>
     </screenshot>
+    <screenshot>
+      <caption>Creating a profile from its SSH connection details</caption>
+      <image>https://raw.githubusercontent.com/hernique33comiitei/git-profiles/main/data/screenshots/02-editor.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Attaching directories to a profile to rewrite their git remotes</caption>
+      <image>https://raw.githubusercontent.com/hernique33comiitei/git-profiles/main/data/screenshots/03-directories.png</image>
+    </screenshot>
   </screenshots>
 
   <launchable type="desktop-id">io.github.hernique33comiitei.GitProfiles.desktop</launchable>
