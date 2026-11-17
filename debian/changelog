@@ -1,3 +1,12 @@
+git-profiles (0.0.2-1) unstable; urgency=medium
+
+  * Use generic example placeholders instead of real hostnames
+  * Add dark-theme screenshots to the app metadata
+  * Rewrite the README with RPM/DEB install instructions
+  * Single-source the version and automate RPM/DEB release builds
+
+ -- Henrique Oliveira <henriik.dev@gmail.com>  Tue, 17 Nov 2026 02:34:27 -0300
+
 git-profiles (0.0.1-1) unstable; urgency=medium
 
   * Initial release.

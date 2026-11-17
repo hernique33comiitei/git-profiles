@@ -1,5 +1,5 @@
 Name:           git-profiles
-Version:        0.0.1
+Version:        0.0.2
 Release:        1%{?dist}
 Summary:        Organize your git repositories by SSH profile
 
@@ -64,5 +64,11 @@ appstreamcli validate --no-net %{buildroot}%{_metainfodir}/io.github.hernique33c
 %{_datadir}/icons/hicolor/scalable/apps/gitprofiles-symbolic.svg
 
 %changelog
+* Tue Nov 17 2026 Henrique Oliveira <henriik.dev@gmail.com> - 0.0.2-1
+- Use generic example placeholders instead of real hostnames
+- Add dark-theme screenshots to the app metadata
+- Rewrite the README with RPM/DEB install instructions
+- Single-source the version and automate RPM/DEB release builds
+
 * Mon Nov 16 2026 Henrique Oliveira <henriik.dev@gmail.com> - 0.0.1-1
 - Initial package
