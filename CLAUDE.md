@@ -20,6 +20,28 @@ and configures the provider CLI (gh/gt/glab) per directory via direnv, keeping t
   app's own runtime deps, installed by `install.sh`. CLI version pins live in `src/Requirements.cpp`
   (gh ≥ 2.104.0, gt ≥ 1.2.0, glab ≥ 1.130.0; git = latest) and bump together with the app version.
 
+## Commits
+
+- **Format:** `<type>: <summary>` — type lowercase, summary in the imperative mood
+  ("add", "fix", "drop", not "added"/"fixes"), English, concise (aim ≤ 72 chars),
+  no trailing period.
+- **Types used here:** `feat` (user-facing feature), `fix` (bug fix), `ui`
+  (QML/layout/visual), `docs`, `i18n` (translations), `ci` (workflows), `packaging`
+  (spec / debian / metainfo / desktop), `refactor`, `chore` (cleanup, deps, misc).
+- **Body (optional):** after a blank line, explain the *why* for anything non-obvious.
+  Wrap at ~72 cols.
+- **Never** add Claude attribution (`Co-Authored-By`, "Generated with…") — see the
+  convention above.
+- One logical change per commit; don't mix unrelated areas.
+
+Examples:
+
+```
+ui: center the .envrc preview and keep the form single-column
+packaging: fix KF6 Kirigami dev package name for Debian/Ubuntu
+chore: drop unused icon concept drafts
+```
+
 ## Build / run / test
 
 - Build + install to `~/.local`: `./install.sh`
