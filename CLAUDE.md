@@ -7,7 +7,6 @@ and configures the provider CLI (gh/gt/glab) per directory via direnv, keeping t
 
 - Repo: [https://github.com/hernique33comiitei/git-profiles](https://github.com/hernique33comiitei/git-profiles) (push over SSH, personal account only)
 - App-id: `io.github.hernique33comiitei.GitProfiles` · binary / icon / gettext-domain: `gitprofiles`
-- Current version: 0.0.1
 
 ## Conventions (must follow)
 
