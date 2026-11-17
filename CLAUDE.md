@@ -85,6 +85,23 @@ the CMake value, so **`tools/bump-version.sh` propagates it to all of them** —
 version in those files by hand. Run `tools/bump-version.sh` with no argument to re-sync them to the
 current CMake version.
 
+What the script does, from the `X.Y.Z` argument (or the current CMake version when none is given):
+
+1. **CMakeLists.txt** — rewrites the number in `project(... VERSION ...)` (the source itself).
+2. **RPM spec** — updates `Version:` and prepends a `%changelog` entry (RPM date format, e.g.
+   `Tue Nov 17 2026`).
+3. **AppStream metainfo** — prepends a `<release version="X.Y.Z" date="…">` at the top of
+   `<releases>` (older entries stay below).
+4. **debian/changelog** — prepends a new `git-profiles (X.Y.Z-1) …` block (RFC date).
+5. **po/pt_BR.po** — updates the `Project-Id-Version` header.
+
+Steps 2–4 are **idempotent**: a changelog/release entry is added only if that version isn't already
+present, so re-running the script (or running it with no argument) never duplicates entries — it
+just confirms everything is in sync. It then prints the version read back from each file.
+
+It does **not** touch the gh/gt/glab version pins in `src/Requirements.cpp` — those are a separate,
+deliberate decision each release.
+
 ### Cut a new version
 
 1. `tools/bump-version.sh X.Y.Z` — bumps CMakeLists and syncs the spec (+ changelog), the metainfo
