@@ -49,17 +49,6 @@ Kirigami.ScrollablePage {
         }
     }
 
-    Kirigami.PlaceholderMessage {
-        anchors.centerIn: parent
-        width: parent.width - Kirigami.Units.gridUnit * 8
-        visible: profiles.count === 0
-        icon.name: profiles.error ? "data-error" : "user-identity"
-        text: profiles.error ? i18n("Could not read ~/.ssh/config") : i18n("No profiles yet")
-        explanation: profiles.error ? profiles.error
-                                    : i18n("Host blocks from %1 will show up here.", profiles.path)
-        helpfulAction: profiles.error ? null : newAction
-    }
-
     Kirigami.Action {
         id: newAction
         text: i18n("New profile")
@@ -70,8 +59,18 @@ Kirigami.ScrollablePage {
     ListView {
         id: list
         model: profiles
-        visible: profiles.count > 0
         currentIndex: -1
+
+        Kirigami.PlaceholderMessage {
+            anchors.centerIn: parent
+            width: parent.width - Kirigami.Units.gridUnit * 8
+            visible: list.count === 0
+            icon.name: profiles.error ? "data-error" : "user-identity"
+            text: profiles.error ? i18n("Could not read ~/.ssh/config") : i18n("No profiles yet")
+            explanation: profiles.error ? profiles.error
+                                        : i18n("Host blocks from %1 will show up here.", profiles.path)
+            helpfulAction: profiles.error ? null : newAction
+        }
 
         delegate: Controls.ItemDelegate {
             id: delegate
