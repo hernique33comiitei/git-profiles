@@ -72,16 +72,24 @@ Distribution is RPM (Fedora) + DEB (Ubuntu/Debian), built by `.github/workflows/
 
 - **The trigger is a tag `v*`, not a commit.** Pushing to `main` — even bumping the version — never
   builds a release. A release happens only when a `vX.Y.Z` tag is pushed.
-- The version in `CMakeLists.txt`, `packaging/fedora/git-profiles.spec` and `debian/changelog` only
-  names the package — it does **not** trigger anything, but it **must match the tag**.
+- The version only names the package — it does **not** trigger anything, but it **must match the tag**.
 - A tag name can't be reused for a new release; cut a new number (`v0.0.2`, …). (Re-pushing the same
   tag needs `-f`, which we only used during initial testing.)
 
+### Version: single source of truth
+
+`CMakeLists.txt` `project(... VERSION x.y.z)` is the one place the version is defined. The app
+derives it at build time (`GITPROFILES_VERSION`). The packaging/metadata files (RPM spec,
+`debian/changelog`, AppStream metainfo, `.po` header) are read by external tools that can't import
+the CMake value, so **`tools/bump-version.sh` propagates it to all of them** — never edit the
+version in those files by hand. Run `tools/bump-version.sh` with no argument to re-sync them to the
+current CMake version.
+
 ### Cut a new version
 
-1. Bump the version in `CMakeLists.txt` (`project(... VERSION x.y.z)`), the `.spec` (`Version:` +
-   a new `%changelog` entry) and `debian/changelog`.
-2. Commit + push `main` (no release yet).
+1. `tools/bump-version.sh X.Y.Z` — bumps CMakeLists and syncs the spec (+ changelog), the metainfo
+   (+ release entry), `debian/changelog` and the `.po` header in one shot.
+2. Review the diff, then commit + push `main` (no release yet).
 3. `git tag vX.Y.Z && git push origin vX.Y.Z` → CI builds RPM + DEB and attaches them to the Release.
 
 ### Packaging gotchas
