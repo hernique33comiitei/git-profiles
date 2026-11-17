@@ -1,0 +1,35 @@
+Source: git-profiles
+Section: devel
+Priority: optional
+Maintainer: Henrique Oliveira <henriik.dev@gmail.com>
+Build-Depends: debhelper-compat (= 13),
+ cmake,
+ ninja-build,
+ extra-cmake-modules,
+ gettext,
+ qt6-base-dev,
+ qt6-declarative-dev,
+ libkf6kirigami-dev,
+ libkf6i18n-dev,
+ libkf6coreaddons-dev
+Standards-Version: 4.7.0
+Homepage: https://github.com/hernique33comiitei/git-profiles
+Rules-Requires-Root: no
+
+Package: git-profiles
+Architecture: any
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+ direnv,
+ libsecret-tools,
+ qml6-module-org-kde-kirigami,
+ qml6-module-org-kde-coreaddons,
+ qml6-module-qtquick-controls,
+ qml6-module-qtquick-dialogs,
+ qml6-module-qtquick-layouts
+Recommends: git
+Description: Organize your git repositories by SSH profile
+ Git Profiles manages SSH/Git identities straight from ~/.ssh/config. It
+ switches repository remotes in bulk (with a dry-run preview) and configures the
+ provider CLI (gh / gt / glab) per directory via direnv, keeping tokens in the
+ keyring.

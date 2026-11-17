@@ -1,0 +1,434 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gitprofiles 0.0.1\n"
+"PO-Revision-Date: 2026-11-16 00:00+0000\n"
+"Last-Translator: Git Profiles\n"
+"Language-Team: Brazilian Portuguese\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "© 2026"
+msgstr "© 2026"
+
+msgid "Organize your git repositories by SSH profile"
+msgstr "Organize seus repositórios git por perfil SSH"
+
+msgid "Profiles"
+msgstr "Perfis"
+
+msgid "Directories"
+msgstr "Diretórios"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "New profile"
+msgstr "Novo perfil"
+
+msgid "Reload"
+msgstr "Recarregar"
+
+msgid "Search profiles…"
+msgstr "Buscar perfis…"
+
+msgid "Could not read ~/.ssh/config"
+msgstr "Não foi possível ler ~/.ssh/config"
+
+msgid "No profiles yet"
+msgstr "Nenhum perfil ainda"
+
+msgid "Host blocks from %1 will show up here."
+msgstr "Os blocos Host de %1 aparecerão aqui."
+
+msgid "key: %1"
+msgstr "chave: %1"
+
+msgid "Identity file not found"
+msgstr "Arquivo de identidade não encontrado"
+
+msgctxt "badge: profile also has provider API access"
+msgid "API"
+msgstr "API"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Delete"
+msgstr "Excluir"
+
+msgid "Edit %1"
+msgstr "Editar %1"
+
+msgid "A Host alias is required."
+msgstr "O apelido do Host é obrigatório."
+
+msgid "A profile named \"%1\" already exists."
+msgstr "Já existe um perfil chamado \"%1\"."
+
+msgid "HostName is required."
+msgstr "O HostName é obrigatório."
+
+msgid "Choose an identity file"
+msgstr "Escolha um arquivo de identidade"
+
+msgid "SSH connection"
+msgstr "Conexão SSH"
+
+msgid "Host alias"
+msgstr "Apelido do Host"
+
+msgid "HostName"
+msgstr "HostName"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "Port"
+msgstr "Porta"
+
+msgid "IdentityFile"
+msgstr "IdentityFile"
+
+msgid "Browse…"
+msgstr "Procurar…"
+
+msgid "Browse for an identity file"
+msgstr "Procurar um arquivo de identidade"
+
+msgid "Provider"
+msgstr "Provedor"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "API URL"
+msgstr "URL da API"
+
+msgid "Owner / account"
+msgstr "Dono / conta"
+
+msgid "gh config dir"
+msgstr "diretório de config do gh"
+
+msgid "Credentials"
+msgstr "Credenciais"
+
+msgid "Paste a personal access token"
+msgstr "Cole um token de acesso pessoal"
+
+msgid "Save credentials"
+msgstr "Salvar credenciais"
+
+msgid "Credentials saved to the keyring."
+msgstr "Credenciais salvas no chaveiro."
+
+msgid "Token stored in the keyring"
+msgstr "Token armazenado no chaveiro"
+
+msgid "No token stored yet"
+msgstr "Nenhum token armazenado ainda"
+
+msgid ".envrc (direnv) preview"
+msgstr "Prévia do .envrc (direnv)"
+
+msgid "Delete profile"
+msgstr "Excluir perfil"
+
+msgid "Remove \"%1\" from ~/.ssh/config? A timestamped backup is kept."
+msgstr "Remover \"%1\" de ~/.ssh/config? Um backup com data/hora é mantido."
+
+msgid "None (SSH only)"
+msgstr "Nenhum (apenas SSH)"
+
+msgid "Profile:"
+msgstr "Perfil:"
+
+msgid "Add directory…"
+msgstr "Adicionar diretório…"
+
+msgid "Choose a directory to attach"
+msgstr "Escolha um diretório para associar"
+
+msgid "Generate all .envrc"
+msgstr "Gerar todos os .envrc"
+
+msgid "Generate .envrc here"
+msgstr "Gerar .envrc aqui"
+
+msgid "Writes a managed block exporting the provider credentials into each directory's .envrc"
+msgstr "Escreve um bloco gerenciado exportando as credenciais do provedor no .envrc de cada diretório"
+
+msgid "Also attached to another profile: %1"
+msgstr "Também associado a outro perfil: %1"
+
+msgid ".envrc written to %1"
+msgstr ".envrc escrito em %1"
+
+msgid ".envrc written to %1 directory(ies)"
+msgstr ".envrc escrito em %1 diretório(s)"
+
+msgid "No directories attached to this profile"
+msgstr "Nenhum diretório associado a este perfil"
+
+msgid "Attach a directory to rewrite the git remotes of the repositories in it."
+msgstr "Associe um diretório para reescrever os remotes dos repositórios nele."
+
+msgid "Include direct subfolders"
+msgstr "Incluir subpastas diretas"
+
+msgid "Also includes %1/* (one level only, not deeper)"
+msgstr "Também inclui %1/* (apenas um nível, sem descer mais)"
+
+msgid "Remove from profile"
+msgstr "Remover do perfil"
+
+msgid "Removed %1"
+msgstr "Removido %1"
+
+msgid "Undo"
+msgstr "Desfazer"
+
+msgid "%1 repository"
+msgid_plural "%1 repositories"
+msgstr[0] "%1 repositório"
+msgstr[1] "%1 repositórios"
+
+msgid ".envrc up to date"
+msgstr ".envrc em dia"
+
+msgid ".envrc outdated"
+msgstr ".envrc desatualizado"
+
+msgid "no .envrc"
+msgstr "sem .envrc"
+
+msgid "Apply remote changes"
+msgstr "Aplicar alterações de remote"
+
+msgid "%1 repository(ies) will have their \"origin\" remote rewritten to \"%2\". This edits each repo's .git/config."
+msgstr "%1 repositório(s) terão o remote \"origin\" reescrito para \"%2\". Isso edita o .git/config de cada repositório."
+
+msgid "%1 changed, %2 failed."
+msgstr "%1 alterado(s), %2 com falha."
+
+msgid "Done — %1 repository(ies) updated."
+msgstr "Concluído — %1 repositório(s) atualizado(s)."
+
+msgid "No directories for this profile"
+msgstr "Nenhum diretório para este perfil"
+
+msgid "Attach directories to this profile before applying."
+msgstr "Associe diretórios a este perfil antes de aplicar."
+
+msgid "Go to Directories"
+msgstr "Ir para Diretórios"
+
+msgid "Ready to preview"
+msgstr "Pronto para pré-visualizar"
+
+msgid "Click Preview to see what will change."
+msgstr "Clique em Pré-visualizar para ver o que vai mudar."
+
+msgid "Preview"
+msgstr "Pré-visualizar"
+
+msgid "Rescan"
+msgstr "Escanear novamente"
+
+msgid "All (%1)"
+msgstr "Todos (%1)"
+
+msgid "Will change (%1)"
+msgstr "Serão alterados (%1)"
+
+msgid "Unchanged (%1)"
+msgstr "Sem alteração (%1)"
+
+msgid "No origin (%1)"
+msgstr "Sem origin (%1)"
+
+msgid "Apply %1 change(s)"
+msgstr "Aplicar %1 alteração(ões)"
+
+msgid "no origin"
+msgstr "sem origin"
+
+msgid "unchanged"
+msgstr "sem alteração"
+
+msgid "changed"
+msgstr "alterado"
+
+msgid "failed"
+msgstr "falhou"
+
+msgid "Required"
+msgstr "Obrigatório"
+
+msgid "git"
+msgstr "git"
+
+msgid "v%1 — up to date."
+msgstr "v%1 — em dia."
+
+msgid "Not installed — required."
+msgstr "Não instalado — obrigatório."
+
+msgid "How to install"
+msgstr "Como instalar"
+
+msgid "How to update"
+msgstr "Como atualizar"
+
+msgid "Provider CLIs"
+msgstr "CLIs de provedor"
+
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+msgid "Optional — no profile uses %1."
+msgstr "Opcional — nenhum perfil usa %1."
+
+msgid "Version %1 installed, requires ≥ %2."
+msgstr "Versão %1 instalada, requer ≥ %2."
+
+msgid "Not installed, requires ≥ %1."
+msgstr "Não instalado, requer ≥ %1."
+
+msgid "Installed with the app"
+msgstr "Instalado com o app"
+
+msgid "direnv"
+msgstr "direnv"
+
+msgid "Comes with the app — run ./install.sh. Pinned ≥ %1."
+msgstr "Vem com o app — execute ./install.sh. Travado em ≥ %1."
+
+msgid "v%1 (pinned ≥ %2), shell hook present."
+msgstr "v%1 (travado ≥ %2), hook do shell presente."
+
+msgid "v%1 — add the hook to ~/.bashrc: eval \"$(direnv hook bash)\""
+msgstr "v%1 — adicione o hook ao ~/.bashrc: eval \"$(direnv hook bash)\""
+
+msgid "Keyring (secret-tool)"
+msgstr "Chaveiro (secret-tool)"
+
+msgid "Available — tokens are stored securely in your keyring."
+msgstr "Disponível — os tokens ficam seguros no seu chaveiro."
+
+msgid "Comes with the app (libsecret) — run ./install.sh."
+msgstr "Vem com o app (libsecret) — execute ./install.sh."
+
+msgid "Recheck"
+msgstr "Verificar novamente"
+
+msgid "Create a profile and attach directories first."
+msgstr "Crie um perfil e associe diretórios primeiro."
+
+msgid "Create a profile on the Profiles page first."
+msgstr "Crie um perfil na página Perfis primeiro."
+
+msgid "Git required"
+msgstr "Git necessário"
+
+msgid "Git is not installed"
+msgstr "O Git não está instalado"
+
+msgid "Git Profiles needs Git to manage your repositories. Install the latest version of Git, then reopen this app."
+msgstr "O Git Profiles precisa do Git para gerenciar seus repositórios. Instale a versão mais recente do Git e reabra este app."
+
+msgid "Download Git"
+msgstr "Baixar o Git"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "System default"
+msgstr "Padrão do sistema"
+
+msgid "Restart the app to apply the language change."
+msgstr "Reinicie o app para aplicar a mudança de idioma."
+
+msgid "Dependencies"
+msgstr "Dependências"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Version %1"
+msgstr "Versão %1"
+
+msgid "Source code"
+msgstr "Código-fonte"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "License"
+msgstr "Licença"
+
+msgid "A dependency needs attention"
+msgstr "Uma dependência precisa de atenção"
+
+msgid "GitHub API"
+msgstr "GitHub API"
+
+msgid "Gitea API"
+msgstr "Gitea API"
+
+msgid "GitLab API"
+msgstr "GitLab API"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Check again (F5)"
+msgstr "Verificar novamente (F5)"
+
+msgid "Preview first to see what will change."
+msgstr "Pré-visualize primeiro para ver o que vai mudar."
+
+msgid "Nothing to change."
+msgstr "Nada para alterar."
+
+msgid "Rewrite %1 remote(s)."
+msgstr "Reescrever %1 remote(s)."
+
+msgid "Click Rescan to see what will change."
+msgstr "Clique em Escanear novamente para ver o que vai mudar."
+
+msgid "No origin remote"
+msgstr "Sem remote origin"
+
+msgid "Choose a key…"
+msgstr "Escolher chave…"
+
+msgid "Test connection"
+msgstr "Testar conexão"
+
+msgid "Testing connection…"
+msgstr "Testando conexão…"
+
+msgid "Authenticated successfully. %1"
+msgstr "Autenticado com sucesso. %1"
+
+msgid "Authentication failed. %1"
+msgstr "Falha de autenticação. %1"
+
+msgid "Host unreachable. %1"
+msgstr "Host inacessível. %1"
+
+msgid "Finished with no clear result."
+msgstr "Concluído sem resultado claro."
+
+msgid "Close"
+msgstr "Fechar"

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Git Profiles
+GenericName=Git SSH Profile Manager
+Comment=Organize your git repositories by SSH profile
+Exec=gitprofiles
+Icon=gitprofiles
+Categories=Development;RevisionControl;Qt;KDE;
+Terminal=false

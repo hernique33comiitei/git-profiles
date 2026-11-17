@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.hernique33comiitei.GitProfiles</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+
+  <name>Git Profiles</name>
+  <summary>Organize your git repositories by SSH profile</summary>
+
+  <description>
+    <p>
+      Git Profiles manages your SSH/Git identities straight from
+      ~/.ssh/config. Each Host block is a profile you can create and edit from a
+      Kirigami interface.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Create and edit SSH profiles (Host, HostName, User, Port, IdentityFile).</li>
+      <li>Attach a profile to directories and rewrite the git remotes of the
+          repositories there, with a dry-run preview.</li>
+      <li>Configure the provider CLI (gh / gt / glab) per directory via direnv,
+          keeping tokens in the system keyring.</li>
+      <li>Test an SSH connection for a profile.</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">io.github.hernique33comiitei.GitProfiles.desktop</launchable>
+  <icon type="stock">gitprofiles</icon>
+
+  <categories>
+    <category>Development</category>
+    <category>RevisionControl</category>
+  </categories>
+
+  <url type="homepage">https://github.com/hernique33comiitei/git-profiles</url>
+  <url type="bugtracker">https://github.com/hernique33comiitei/git-profiles/issues</url>
+
+  <developer id="io.github.hernique33comiitei">
+    <name>Henrique Oliveira</name>
+  </developer>
+
+  <provides>
+    <binary>gitprofiles</binary>
+  </provides>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="0.0.1" date="2026-11-16">
+      <description>
+        <p>Initial release.</p>
+      </description>
+    </release>
+  </releases>
+</component>
