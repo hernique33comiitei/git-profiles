@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  rpm:
+    name: Build RPM (Fedora)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build RPM in a Fedora container
+        run: |
+          docker run --rm -v "$PWD":/src -w /src fedora:41 bash -euxc '
+            dnf -y install rpm-build rpmdevtools git gcc-c++ cmake ninja-build \
+              extra-cmake-modules gettext desktop-file-utils appstream \
+              qt6-qtbase-devel qt6-qtdeclarative-devel \
+              kf6-kirigami-devel kf6-ki18n-devel kf6-kcoreaddons-devel
+            git config --global --add safe.directory /src
+            V=$(rpmspec -q --qf "%{version}\n" packaging/fedora/git-profiles.spec | head -1)
+            rpmdev-setuptree
+            git archive --format=tar.gz --prefix=git-profiles-$V/ \
+              -o ~/rpmbuild/SOURCES/git-profiles-$V.tar.gz HEAD
+            rpmbuild -ba packaging/fedora/git-profiles.spec
+            mkdir -p /src/dist
+            cp ~/rpmbuild/RPMS/*/*.rpm ~/rpmbuild/SRPMS/*.rpm /src/dist/
+          '
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rpm
+          path: dist/*.rpm
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.rpm
+
+  deb:
+    name: Build DEB (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build DEB in an Ubuntu 24.10 container
+        run: |
+          docker run --rm -v "$PWD":/src -w /src ubuntu:24.10 bash -euxc '
+            export DEBIAN_FRONTEND=noninteractive
+            apt-get update
+            apt-get install -y build-essential debhelper cmake ninja-build \
+              extra-cmake-modules gettext \
+              qt6-base-dev qt6-declarative-dev \
+              libkf6kirigami-dev libkf6i18n-dev libkf6coreaddons-dev
+            dpkg-buildpackage -us -uc -b
+            mkdir -p /src/dist
+            cp /*.deb /src/dist/
+          '
+      - uses: actions/upload-artifact@v4
+        with:
+          name: deb
+          path: dist/*.deb
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.deb
