@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   rpm:
-    name: Build RPM (Fedora)
+    name: Build RPM
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
           files: dist/*.rpm
 
   deb:
-    name: Build DEB (Ubuntu)
+    name: Build DEB
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
