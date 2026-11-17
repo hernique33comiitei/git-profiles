@@ -5,7 +5,7 @@ Desktop app (Kirigami/QML + C++20/Qt6, CMake+ECM) that organizes git repos by SS
 profiles to directories, bulk-switches repo remotes (editing `.git/config` directly, dry-run first),
 and configures the provider CLI (gh/gt/glab) per directory via direnv, keeping tokens in the keyring.
 
-- Repo: <https://github.com/hernique33comiitei/git-profiles> (push over SSH, personal account only)
+- Repo: [https://github.com/hernique33comiitei/git-profiles](https://github.com/hernique33comiitei/git-profiles) (push over SSH, personal account only)
 - App-id: `io.github.hernique33comiitei.GitProfiles` · binary / icon / gettext-domain: `gitprofiles`
 - Current version: 0.0.1
 
@@ -13,7 +13,7 @@ and configures the provider CLI (gh/gt/glab) per directory via direnv, keeping t
 
 - **Code, comments and docs are English only.** The UI is localized via `i18n()` (KI18n);
   Portuguese lives **only** in `po/pt_BR.po` (compiled to `gitprofiles.mo` by CMake).
-- **GitHub: only the `hernique33comiitei` account.** Never the Band work account (`hesantos-png`).
+- **GitHub: only the `hernique33comiitei` account.** Never the work account (`hesantos-png`).
   Git pushes go over SSH with the personal key. Author email: henriik.dev@gmail.com.
 - **No Claude attribution** in commits or PRs (no `Co-Authored-By`, no "Generated with…").
 - **The app installs nothing.** git / gh / gt / glab are warn-only preflight checks (missing git
@@ -76,8 +76,3 @@ Distribution is RPM (Fedora) + DEB (Ubuntu/Debian), built by `.github/workflows/
 
 - Fedora: `sudo dnf install <release-url>/git-profiles-<ver>.fc41.x86_64.rpm`
 - Ubuntu/Debian: download the `.deb`, then `sudo apt install ./git-profiles_<ver>_amd64.deb`
-
-## COPR (optional, later)
-
-The SRPM + `.spec` are ready. When COPR's OIDC login works again, upload the SRPM or set up
-Build-from-SCM.

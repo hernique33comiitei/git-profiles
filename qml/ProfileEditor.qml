@@ -171,7 +171,7 @@ Kirigami.ScrollablePage {
             Controls.TextField {
                 id: hostField
                 Kirigami.FormData.label: i18n("Host alias")
-                placeholderText: "github-band"
+                placeholderText: "github-work"
                 onTextChanged: { editor.markDirty(); editor.refreshTokenStatus() }
             }
             Controls.Label {

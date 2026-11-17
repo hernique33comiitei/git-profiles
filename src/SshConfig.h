@@ -22,7 +22,7 @@ struct SshProfile {
 
     // From `#@gp ...` directives:
     QString provider; // "", "github", "gitea", "gitlab"
-    QString apiUrl; // provider API base, e.g. https://git.bandeirantes.com.br
+    QString apiUrl; // provider API base, e.g. https://gitea.example.com
     QString ghConfig;
     QString owner;
     QString tokenRef;
