@@ -87,10 +87,13 @@ Kirigami.ScrollablePage {
         Kirigami.Action {
             text: i18n("Test connection")
             icon.name: "network-server-symbolic"
-            enabled: !SshTester.running && hostField.text.trim().length > 0
+            enabled: !SshTester.running && hostNameField.text.trim().length > 0
             onTriggered: {
                 testBanner.visible = false
-                SshTester.test(hostField.text.trim())
+                // Test the live form values, so unsaved edits are honored.
+                SshTester.test(hostNameField.text.trim(), userField.text.trim(),
+                               portSpin.value === 22 ? "" : String(portSpin.value),
+                               identityField.text.trim())
             }
         },
         Kirigami.Action {

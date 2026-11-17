@@ -1,5 +1,7 @@
 #include "SshTester.h"
 
+#include <QDir>
+
 SshTester::SshTester(QObject *parent)
     : QObject(parent)
 {
@@ -14,9 +16,11 @@ void SshTester::setRunning(bool r)
     Q_EMIT runningChanged();
 }
 
-void SshTester::test(const QString &hostAlias)
+void SshTester::test(const QString &hostName, const QString &user,
+                     const QString &port, const QString &identityFile)
 {
-    if (m_running || hostAlias.trimmed().isEmpty()) {
+    const QString host = hostName.trimmed();
+    if (m_running || host.isEmpty()) {
         return;
     }
 
@@ -70,7 +74,31 @@ void SshTester::test(const QString &hostAlias)
         }
     });
 
-    m_proc->start(QStringLiteral("ssh"),
-                  {QStringLiteral("-T"), QStringLiteral("-o"), QStringLiteral("BatchMode=yes"),
-                   QStringLiteral("-o"), QStringLiteral("ConnectTimeout=10"), hostAlias.trimmed()});
+    // Build the command from the live fields, overriding any saved config so
+    // the test reflects what is on screen rather than the stored Host block.
+    QStringList args{QStringLiteral("-T"),
+                     QStringLiteral("-o"), QStringLiteral("BatchMode=yes"),
+                     QStringLiteral("-o"), QStringLiteral("ConnectTimeout=10")};
+
+    const QString key = identityFile.trimmed();
+    if (!key.isEmpty()) {
+        QString path = key;
+        if (path == QLatin1String("~")) {
+            path = QDir::homePath();
+        } else if (path.startsWith(QLatin1String("~/"))) {
+            path = QDir::homePath() + path.mid(1);
+        }
+        args << QStringLiteral("-o") << QStringLiteral("IdentitiesOnly=yes")
+             << QStringLiteral("-i") << path;
+    }
+
+    const QString p = port.trimmed();
+    if (!p.isEmpty() && p != QLatin1String("22")) {
+        args << QStringLiteral("-p") << p;
+    }
+
+    const QString u = user.trimmed().isEmpty() ? QStringLiteral("git") : user.trimmed();
+    args << (u + QLatin1Char('@') + host);
+
+    m_proc->start(QStringLiteral("ssh"), args);
 }

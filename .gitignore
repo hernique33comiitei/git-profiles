@@ -3,3 +3,6 @@
 /build-deb/
 *.user
 docs/
+# direnv file the app writes into attached dirs (incl. this repo during testing)
+/.envrc
+.env*

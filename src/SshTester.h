@@ -5,8 +5,10 @@
 #include <QQmlEngine>
 #include <QString>
 
-// Runs `ssh -T <host alias>` asynchronously (BatchMode, short timeout) so the UI
-// never blocks, and reports whether the key authenticates / the host answers.
+// Runs `ssh -T` asynchronously (BatchMode, short timeout) so the UI never
+// blocks, and reports whether the key authenticates / the host answers. The
+// connection is driven by the fields passed in (not a saved ~/.ssh/config Host
+// block), so it tests exactly what is on screen — including unsaved edits.
 class SshTester : public QObject
 {
     Q_OBJECT
@@ -20,7 +22,12 @@ public:
 
     bool running() const { return m_running; }
 
-    Q_INVOKABLE void test(const QString &hostAlias);
+    // Tests the given connection parameters directly (ssh -o overrides), so
+    // in-editor values are honored without needing to save first. An empty
+    // user defaults to "git"; an empty/22 port and empty identityFile are
+    // simply omitted.
+    Q_INVOKABLE void test(const QString &hostName, const QString &user,
+                          const QString &port, const QString &identityFile);
 
 Q_SIGNALS:
     // level: "success" | "authfail" | "unreachable" | "unknown"
