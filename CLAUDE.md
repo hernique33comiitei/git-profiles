@@ -95,9 +95,10 @@ What the script does, from the `X.Y.Z` argument (or the current CMake version wh
 4. **debian/changelog** — prepends a new `git-profiles (X.Y.Z-1) …` block (RFC date).
 5. **po/pt_BR.po** — updates the `Project-Id-Version` header.
 
-The changelog entries in steps 2–4 are generated from the commit subjects since the last tag
-(`git log <lasttag>..HEAD`, minus the release-bump commits), so well-formed commit messages become
-the changelog. Review and trim them before committing if needed.
+Releases **always** ship a curated, user-facing changelog — not the raw commit list. Pass a notes
+file (one curated line per entry) as the 2nd argument: `tools/bump-version.sh X.Y.Z <notes-file>`,
+and the same lines land in all three changelogs. Without a notes file the script drafts the list
+from the commit subjects since the last tag — use that only as a starting point to curate from.
 
 Steps 2–4 are **idempotent**: a changelog/release entry is added only if that version isn't already
 present, so re-running the script (or running it with no argument) never duplicates entries — it
@@ -111,10 +112,9 @@ deliberate decision each release.
 Just ask — **"suba a versão X.Y.Z"** / **"release X.Y.Z"** (or `/release`) — and the **`release`
 skill** (`.claude/skills/release/`) runs the whole flow below. By hand:
 
-1. `tools/bump-version.sh X.Y.Z` — bumps CMakeLists and syncs the spec (+ changelog), the metainfo
-   (+ release entry), `debian/changelog` and the `.po` header in one shot.
-2. Review the generated changelog (`git diff -- debian/changelog`), trimming if needed, then commit:
-   `git commit -am "chore: release X.Y.Z"` (push `main` — no release yet).
+1. Write a short curated changelog to a notes file, then `tools/bump-version.sh X.Y.Z <notes-file>`
+   — bumps CMakeLists and syncs the spec, metainfo, `debian/changelog` and `.po` header with it.
+2. Review (`git diff -- debian/changelog`), then commit: `git commit -am "chore: release X.Y.Z"`.
 3. `git tag vX.Y.Z && git push origin vX.Y.Z` → CI builds RPM + DEB and attaches them to the Release.
 
 ### Packaging gotchas

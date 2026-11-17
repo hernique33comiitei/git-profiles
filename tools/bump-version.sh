@@ -5,11 +5,16 @@
 # The packaging/metadata files (RPM spec, debian/changelog, AppStream metainfo,
 # .po header) are read by external tools and can't import the CMake value, so
 # this script propagates it to all of them from one place, and fills their
-# changelog entries from the git commits since the last tag.
+# changelog entries.
 #
 # Usage:
-#   tools/bump-version.sh 0.0.2   # set a new version, sync every file, build changelogs
-#   tools/bump-version.sh         # re-sync every file to the current CMake version
+#   tools/bump-version.sh X.Y.Z notes.txt   # set version, sync, changelog from notes.txt
+#   tools/bump-version.sh X.Y.Z             # ... changelog drafted from commits since last tag
+#   tools/bump-version.sh                    # re-sync every file to the current CMake version
+#
+# notes.txt holds one changelog line per entry (blank lines ignored). Releases
+# always ship a curated, user-facing changelog, so a notes file is the normal
+# path; the commit-derived draft is just a starting point to curate from.
 #
 # After bumping: review the diff, commit, then tag (git tag vX.Y.Z && git push --tags).
 set -euo pipefail
@@ -25,24 +30,32 @@ AUTHOR="Henrique Oliveira <henriik.dev@gmail.com>"
 cur=$(grep -oP 'project\(gitprofiles VERSION \K[0-9]+\.[0-9]+\.[0-9]+' "$CMAKE")
 new="${1:-$cur}"
 if ! [[ "$new" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-  echo "usage: $0 [X.Y.Z]" >&2; exit 1
+  echo "usage: $0 [X.Y.Z] [notes-file]" >&2; exit 1
 fi
 
 today=$(date +%Y-%m-%d)
 rpmdate=$(LC_ALL=C date '+%a %b %d %Y')
 debdate=$(LC_ALL=C date -R)
 
-# --- Change list: commit subjects since the last tag (newest first). ---
-lasttag=$(git describe --tags --abbrev=0 2>/dev/null || true)
-range=""; [ -n "$lasttag" ] && range="$lasttag..HEAD"
-mapfile -t raw < <(git log --no-merges --pretty='%s' $range 2>/dev/null || true)
-changes=()
-for c in "${raw[@]}"; do
-  case "$c" in
-    "chore: release "*|"chore: bump version"*) continue ;;  # skip our own bump commits
-  esac
-  changes+=("$c")
-done
+# --- Change list: from a notes file (one entry per line) when given, else the
+#     commit subjects since the last tag (a draft to curate). ---
+notes="${2:-}"
+if [ -n "$notes" ] && [ -s "$notes" ]; then
+  mapfile -t changes < <(grep -v '^[[:space:]]*$' "$notes")
+  source_desc="$notes"
+else
+  lasttag=$(git describe --tags --abbrev=0 2>/dev/null || true)
+  range=""; [ -n "$lasttag" ] && range="$lasttag..HEAD"
+  mapfile -t raw < <(git log --no-merges --pretty='%s' $range 2>/dev/null || true)
+  changes=()
+  for c in "${raw[@]}"; do
+    case "$c" in
+      "chore: release "*|"chore: bump version"*) continue ;;  # skip our own bump commits
+    esac
+    changes+=("$c")
+  done
+  source_desc="commits since ${lasttag:-start}"
+fi
 [ ${#changes[@]} -eq 0 ] && changes=("Release $new")
 
 xml_escape() { sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g'; }
@@ -90,7 +103,7 @@ fi
 # 5) .po header (informational).
 sed -i -E "s/(Project-Id-Version: gitprofiles )[0-9]+\.[0-9]+\.[0-9]+/\1$new/" "$PO"
 
-echo "Version synced to $new (${#changes[@]} changelog line(s) from ${lasttag:-start}..HEAD):"
+echo "Version synced to $new (${#changes[@]} changelog line(s) from $source_desc):"
 echo "  CMakeLists.txt       -> $(grep -oP 'project\(gitprofiles VERSION \K[0-9.]+' "$CMAKE")"
 echo "  $SPEC  -> $(grep -oP '^Version:[[:space:]]*\K[0-9.]+' "$SPEC")"
 echo "  $DEB     -> $(head -1 "$DEB" | grep -oP '\(\K[0-9.]+')"
