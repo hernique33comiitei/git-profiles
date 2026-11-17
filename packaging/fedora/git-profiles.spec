@@ -1,5 +1,5 @@
 Name:           git-profiles
-Version:        0.0.2
+Version:        0.0.3
 Release:        1%{?dist}
 Summary:        Organize your git repositories by SSH profile
 
@@ -64,6 +64,10 @@ appstreamcli validate --no-net %{buildroot}%{_metainfodir}/io.github.hernique33c
 %{_datadir}/icons/hicolor/scalable/apps/gitprofiles-symbolic.svg
 
 %changelog
+* Tue Nov 17 2026 Henrique Oliveira <henriik.dev@gmail.com> - 0.0.3-1
+- Test connection now checks the details you are editing, even before you save
+- Show a placeholder on the Profiles page when there are no profiles yet
+
 * Tue Nov 17 2026 Henrique Oliveira <henriik.dev@gmail.com> - 0.0.2-1
 - Use generic example placeholders instead of real hostnames
 - Add dark-theme screenshots to the app metadata
