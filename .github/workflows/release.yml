@@ -28,7 +28,7 @@ jobs:
               -o ~/rpmbuild/SOURCES/git-profiles-$V.tar.gz HEAD
             rpmbuild -ba packaging/fedora/git-profiles.spec
             mkdir -p /src/dist
-            cp ~/rpmbuild/RPMS/*/*.rpm ~/rpmbuild/SRPMS/*.rpm /src/dist/
+            find ~/rpmbuild/RPMS ~/rpmbuild/SRPMS -name "*.rpm" ! -name "*-debug*" -exec cp {} /src/dist/ \;
           '
       - uses: actions/upload-artifact@v4
         with:
